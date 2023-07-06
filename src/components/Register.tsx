@@ -60,7 +60,7 @@ function Register() {
           <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Register</button>
         </form>
         <p className="mt-4">
-          Already have an account? <Link to="/login" className="text-blue-500">Login here</Link>.
+          Already have an account? <Link data-testid="loginPage" to="/login" className="text-blue-500">Login here</Link>.
         </p>
       </div>
     </div>

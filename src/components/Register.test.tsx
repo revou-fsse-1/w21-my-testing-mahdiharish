@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { describe, expect, test } from "vitest"
 import Register from "./Register"
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, } from "react-router-dom"
 import * as yup from 'yup';
 
 test('render Register page correctly', () => {

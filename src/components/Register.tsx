@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux'
+import { registerSuccess, registerFailure } from './redux/actions';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -10,6 +12,7 @@ const schema = yup.object().shape({
 });
 
 function Register() {
+  const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
@@ -27,9 +30,11 @@ function Register() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
+        dispatch(registerSuccess());
         navigate('/login');
       } else {
         const { error } = await response.json();
+        dispatch(registerFailure(error));
         throw new Error(error);
       }
     } catch (error) {

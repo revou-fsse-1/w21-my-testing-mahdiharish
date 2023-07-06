@@ -8,21 +8,29 @@ import NotFound from './components/NotFound';
 import CategoryDetails from './components/Dashboard/CategoryList';
 import EditCategoryPage from './components/Dashboard/EditCategory';
 import PrivateRoute from './components/PrivateRoute';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit'
+import { rootReducer } from './components/redux/reducers';
 
+const store = configureStore({
+  reducer: rootReducer
+})
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Register />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-        <Route path="/category/:categoryId" element={<PrivateRoute><CategoryDetails /></PrivateRoute>} />
-        <Route path="/category/edit/:categoryId" element={<PrivateRoute><EditCategoryPage /></PrivateRoute>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <ToastContainer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Register />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/category/:categoryId" element={<PrivateRoute><CategoryDetails /></PrivateRoute>} />
+          <Route path="/category/edit/:categoryId" element={<PrivateRoute><EditCategoryPage /></PrivateRoute>} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ToastContainer />
+      </Router>
+    </Provider>
   );
 }
 

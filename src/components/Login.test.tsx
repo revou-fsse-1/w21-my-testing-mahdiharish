@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { describe, expect, test } from "vitest"
 import { BrowserRouter as Router } from "react-router-dom"
 import Login from "./Login"

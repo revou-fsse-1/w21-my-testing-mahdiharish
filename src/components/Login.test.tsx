@@ -3,12 +3,20 @@ import { describe, expect, test } from "vitest"
 import { BrowserRouter as Router } from "react-router-dom"
 import Login from "./Login"
 import * as yup from 'yup';
+import { Provider } from "react-redux";
+import { configureStore } from '@reduxjs/toolkit'
+import { rootReducer } from '../components/redux/reducers'
 
 test('render Register page correctly', () => {
+    const store = configureStore({
+      reducer: rootReducer
+  });
     render(
+      <Provider store={store}>
         <Router>
-            <Login />
+          <Login />
         </Router>
+      </Provider>
     )
     const registerPage = screen.getByTestId('login');
     expect(registerPage).toBeTruthy()
